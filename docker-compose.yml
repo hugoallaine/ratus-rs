@@ -1,0 +1,14 @@
+services:
+  ratus:
+    build: .
+    env_file: .env
+    environment:
+      PIPER_URL: http://piper:5000 # écrase la valeur localhost du .env
+    depends_on: [piper]
+    restart: unless-stopped
+    mem_limit: 256m
+
+  piper:
+    build: piper
+    restart: unless-stopped
+    mem_limit: 384m
